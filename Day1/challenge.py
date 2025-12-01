@@ -3,6 +3,7 @@ import argparse
 import sys
 import copy
 from os.path import join
+import math
 
 def partOne(data):
     inputs = data
@@ -32,6 +33,22 @@ def partTwo(data):
             if position == 0: count += 1
 
     return count
+
+#Inital attempt, im not sure why this breaks?
+#My guess is some bad division around negative numbers between -99 and -1
+# def partTwo(data):
+#     inputs = data
+#     position = 50
+#     oldpos = 50
+#     count = 0
+#     for line in inputs:
+#         if line[0] == "L":
+#             position = (position - int(line[1:]))
+#         else:
+#             position = (position + int(line[1:]))
+#         count += abs(position // 100)
+#         position = position % 100
+#     return count
 
 def main(fileName):
     data = []
