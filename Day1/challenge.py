@@ -5,10 +5,33 @@ import copy
 from os.path import join
 
 def partOne(data):
-    pass
+    inputs = data
+    position = 50
+    count = 0
+    for line in inputs:
+        if line[0] == "L":
+            position = (position - int(line[1:]))%100
+        else:
+            position = (position + int(line[1:]))%100
+        if position == 0:
+            count += 1
+    return count
 
 def partTwo(data):
-    pass
+    inputs = data
+    position = 50
+    oldpos = 50
+    count = 0
+    for line in inputs:
+        mod = 1
+        if line[0] == "L":
+            mod = -1
+        for click in range(int(line[1:])):
+            position = position + mod
+            position = position % 100
+            if position == 0: count += 1
+
+    return count
 
 def main(fileName):
     data = []
