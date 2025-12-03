@@ -24,7 +24,7 @@ def partTwo(data):
     oldpos = 50
     count = 0
     for line in inputs:
-        mod = 1
+        mod = 1 
         if line[0] == "L":
             mod = -1
         for click in range(int(line[1:])):
@@ -35,20 +35,23 @@ def partTwo(data):
     return count
 
 #Inital attempt, im not sure why this breaks?
-#My guess is some bad division around negative numbers between -99 and -1
-# def partTwo(data):
-#     inputs = data
-#     position = 50
-#     oldpos = 50
-#     count = 0
-#     for line in inputs:
-#         if line[0] == "L":
-#             position = (position - int(line[1:]))
-#         else:
-#             position = (position + int(line[1:]))
-#         count += abs(position // 100)
-#         position = position % 100
-#     return count
+#My guess is some bad division around negative numbers IG?
+def partTwoOG(data):
+    inputs = data
+    position = 50
+    count = 0
+    for line in inputs:
+        if line[0] == "L":
+            position = (position + int(line[1:]))
+        else:
+            position = (position - int(line[1:]))
+        
+        count += abs(position//100) if position >= 0 else (1 + abs(position)//100)
+        #if position == 0:
+        #    count += 1
+        position = position % 100
+
+    return count
 
 def main(fileName):
     data = []
@@ -61,6 +64,9 @@ def main(fileName):
     print("--- %s seconds ---" % (time.time() - start_time))
     start_time = time.time()
     print(partTwo(data))
+    print("--- %s seconds ---" % (time.time() - start_time))
+    start_time = time.time()
+    print(partTwoOG(data))
     print("--- %s seconds ---" % (time.time() - start_time))
 
 
