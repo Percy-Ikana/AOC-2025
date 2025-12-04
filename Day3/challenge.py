@@ -29,13 +29,14 @@ def partOne(data):
 
 def partTwo(data):
     total = 0
+    battnum = 12
     for line in data:
         indexs = [] # This should be 12 long at the end. This would also work for part 1
         line = line.strip()
-        for i in range(12, 0, -1):
+        for i in range(battnum, 0, -1):
             for char in strints:
                 try:
-                    ind = line.index(char, indexs[11-i]+1 if i != 12 else 0, len(line)-i+1)
+                    ind = line.index(char, indexs[battnum-1-i]+1 if i != battnum else 0, len(line)-i+1)
                     indexs.append(ind)
                     break
                 except ValueError:
