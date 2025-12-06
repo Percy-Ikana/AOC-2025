@@ -27,8 +27,10 @@ def partOne(data):
     return sum(totals)
 
 def partTwo(data):
+    #grab operands in order
     op = data[-1].split()
     splitVals = []
+    #Grab the amount of digits +1 used by each problem
     x = 1
     while x < len(data[-1]):
         if data[-1][x] == '*' or data[-1][x] == '+' or data[-1][x] == '\n':
@@ -39,14 +41,17 @@ def partTwo(data):
     problems = []
     operands = len(data[:-1])
     for x in range(len(splitVals)):
+        #Grab the start and stop positions for this problem
         start = sum(splitVals[:x])
         end = sum(splitVals[:x])+splitVals[x]
         ops = [vals[start:end] for vals in data[:-1]]
         newops = []
+        #for each operand in the problem, add each col to its own list, and make it an int
         for y in range(len(ops[0])-2, -1, -1):
             newops.append(int("".join([opval[y] for opval in ops])))
         newops.append(op[x])
         problems.append(newops)
+    #Same as part 1
     totals = []
     for problem in problems:
         op = problem[-1]
